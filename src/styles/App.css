@@ -1,0 +1,9 @@
+.App-title {
+  color: #222;
+  font-weight: bold;
+}
+
+.App-container {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  padding: 40px !important;
+}
