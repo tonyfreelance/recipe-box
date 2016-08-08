@@ -12,12 +12,14 @@ const recipe = (state, action) => {
             if (state.id === action.recipe.id) {
                 return {
                     ...recipe,
-                    name: state.recipe.name,
-                    ingredients: state.recipe.ingredients
+                    name: action.recipe.name,
+                    ingredients: action.recipe.ingredients
                 }
             } else {
                 return state;
             }
+        case 'DELETE_RECIPE':
+          return state.id !== action.id;
         default:
             return state;
     }
@@ -39,7 +41,7 @@ export const recipesReducer = (state = [], action) => {
             return state.map(r => recipe(r, action));
         case 'DELETE_RECIPE':
             {
-                return state.filter(recipe => recipe.id !== action.id);
+                return state.filter(r => recipe(r, action));
             }
         default:
             return state;

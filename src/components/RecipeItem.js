@@ -106,5 +106,6 @@ class RecipeItem extends Component {
     );
   }
 }
+RecipeItem = connect()(RecipeItem);
 
-export default connect()(RecipeItem);
+export default RecipeItem;

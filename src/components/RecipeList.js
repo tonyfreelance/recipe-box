@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import RecipeItem from './RecipeItem';
 
-function RecipeList({recipes}) {
+let RecipeList = ({recipes}) => {
   return (
     <div>
       {recipes.map(recipe => (
@@ -14,6 +14,7 @@ function RecipeList({recipes}) {
       ))}
     </div>
   );
-}
+};
+RecipeList = connect(state => state)(RecipeList);
 
-export default connect(state => state)(RecipeList);
+export default RecipeList;
