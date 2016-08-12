@@ -1,42 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
+import { hashHistory } from 'react-router';
 
-import App from './components/App';
 import './styles/index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
-import RecipeBoxAPI from './api/RecipeBoxAPI';
 import {configure} from './store/configureStore';
-import {addRecipes} from './actions/actions';
+import * as actions from './actions/actions';
+import router from './router/';
+import firebase from './firebase/index';
 
 const store = configure();
-store.subscribe(() => {
-  const state = store.getState();
-  console.log('Current state', state);
-  RecipeBoxAPI.setLocalStorage(state.recipes);
-});
 
-const defaultRecipes = [
-  {
-    id: '1',
-    name: 'Banh beo',
-    ingredients: 'Bot my, bot no, banh trang tron'
-  },
-  {
-    id: '2',
-    name: 'Trung cut lon',
-    ingredients: 'Trung cut, thit lon, mo hanh'
+firebase.auth().onAuthStateChanged((user) => {
+  if(user) {
+    store.dispatch(actions.login(user.uid));
+    store.dispatch(actions.startAddRecipes())
+    hashHistory.push('/recipes');
+    console.log('Current state', store.getState());
+  } else {
+    store.dispatch(actions.logout());
+    hashHistory.push('/');
+    console.log('Current state', store.getState());
   }
-];
-
-const recipes = RecipeBoxAPI.getLocalStorage().length > 0 ? RecipeBoxAPI.getLocalStorage() : defaultRecipes;
-
-store.dispatch(addRecipes(recipes));
+});
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    {router}
   </Provider>,
   document.getElementById('root')
 );

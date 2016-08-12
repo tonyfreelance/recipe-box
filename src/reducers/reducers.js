@@ -1,17 +1,11 @@
-import uuid from 'uuid';
-
 const recipe = (state, action) => {
     switch (action.type) {
         case 'ADD_RECIPE':
-            return {
-                id: uuid(),
-                name: action.name,
-                ingredients: action.ingredients
-            };
+            return action.recipe;
         case 'EDIT_RECIPE':
             if (state.id === action.recipe.id) {
                 return {
-                    ...recipe,
+                    ...state,
                     name: action.recipe.name,
                     ingredients: action.recipe.ingredients
                 }
@@ -46,4 +40,17 @@ export const recipesReducer = (state = [], action) => {
         default:
             return state;
     }
+}
+
+export const authReducer = (state = {}, action) => {
+  switch (action.type) {
+    case 'LOGIN':
+      return {
+        uid: action.uid
+      };
+    case 'LOGOUT':
+      return {};
+    default:
+      return state;
+  }
 }

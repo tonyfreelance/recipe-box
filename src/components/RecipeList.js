@@ -1,20 +1,19 @@
 import React from 'react';
-import {connect} from 'react-redux';
 
 import RecipeItem from './RecipeItem';
 
-let RecipeList = ({recipes}) => {
+let RecipeList = ({recipes, deleteRecipe}) => {
   return (
     <div>
       {recipes.map(recipe => (
         <RecipeItem
           key={recipe.id}
           {...recipe}
+          deleteRecipe={() => deleteRecipe(recipe.id)}
         />
       ))}
     </div>
   );
 };
-RecipeList = connect(state => state)(RecipeList);
 
 export default RecipeList;

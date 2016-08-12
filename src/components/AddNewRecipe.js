@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import {Button, Modal, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 
-import {addRecipe} from '../actions/actions';
+import * as actions from '../actions/actions';
 
 class AddNewRecipe extends Component {
   state = {
@@ -21,7 +21,7 @@ class AddNewRecipe extends Component {
     if(name.length > 0) {
       ReactDOM.findDOMNode(this.name).value = '';
       ReactDOM.findDOMNode(this.ingredients).value = '';
-      dispatch(addRecipe(name, ingredients));
+      dispatch(actions.startAddRecipe(name, ingredients));
       this.setState({showModal: false});
     } else {
       ReactDOM.findDOMNode(this.name).focus();

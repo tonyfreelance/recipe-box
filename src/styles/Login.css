@@ -1,10 +1,15 @@
-.App-title {
+.Login-title {
   color: #222;
   font-weight: bold;
   text-align: center;
 }
 
-.App-container {
+.Login-container {
   background-color: rgba(255, 255, 255, 0.85) !important;
   padding: 40px !important;
+  text-align: center;
+}
+
+.Login-github {
+  margin-bottom: 10px;
 }

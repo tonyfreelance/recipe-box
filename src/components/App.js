@@ -1,37 +1,17 @@
 import React from 'react';
-import {Navbar, Nav, NavItem, Grid, Row, Col, Jumbotron, PageHeader} from 'react-bootstrap';
+import {Grid, Row, Col} from 'react-bootstrap';
 
 import '../styles/App.css';
-import RecipeList from './RecipeList';
-import AddNewRecipe from './AddNewRecipe';
+import NavBar from './NavBar';
 
-function App() {
+function App(props) {
   return (
     <div>
-      <Navbar inverse fluid>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <a href="#">Recipe Box</a>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse>
-          <Nav>
-            <NavItem eventKey={1} href="#" active>Home</NavItem>
-          </Nav>
-          <Nav pullRight>
-            <NavItem eventKey={1} href="/login">Log In</NavItem>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
+      <NavBar />
       <Grid>
         <Row>
           <Col xs={12} md={8} mdOffset={2}>
-            <PageHeader className="App-title">Hanoian Restaurant</PageHeader>
-            <Jumbotron className="App-container">
-              <RecipeList />
-            </Jumbotron>
-            <AddNewRecipe />
+            {props.children}
           </Col>
         </Row>
       </Grid>

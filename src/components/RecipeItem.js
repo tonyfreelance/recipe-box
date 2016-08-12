@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import {Accordion, Panel, ListGroup, ListGroupItem, Button, ButtonGroup, Modal, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 
-import {deleteRecipe, editRecipe} from '../actions/actions';
+import {deleteRecipe, startEditRecipe} from '../actions/actions';
 
 class RecipeItem extends Component {
   static propTypes = {
@@ -36,7 +36,7 @@ class RecipeItem extends Component {
     if(name.length > 0) {
       ReactDOM.findDOMNode(this.name).value = '';
       ReactDOM.findDOMNode(this.ingredients).value = '';
-      dispatch(editRecipe(recipe));
+      dispatch(startEditRecipe(recipe));
       this.setState({showModal: false});
     } else {
       ReactDOM.findDOMNode(this.name).focus();
@@ -48,7 +48,7 @@ class RecipeItem extends Component {
   }
 
   render() {
-    const {id, name, ingredients, dispatch} = this.props;
+    const {id, name, ingredients, deleteRecipe} = this.props;
 
     return (
       <Accordion>
@@ -59,7 +59,7 @@ class RecipeItem extends Component {
             {ingredients.split(',').map((ingredient, index) => <ListGroupItem key={index}>{ingredient}</ListGroupItem>)}
           </ListGroup>
           <ButtonGroup>
-            <Button bsStyle="danger" onClick={() => dispatch(deleteRecipe(id))}>Delete</Button>
+            <Button bsStyle="danger" onClick={deleteRecipe}>Delete</Button>
             <Button onClick={this.openModal}>Edit</Button>
           </ButtonGroup>
           {/* Edit Form start */}
