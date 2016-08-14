@@ -1,7 +1,6 @@
 import firebase from 'firebase';
 
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-let env = require(`../config/${process.env.NODE_ENV}.env`);
+let env = require(`../config/${process.env.REACT_APP_ENV}.env`);
 
 try {
     const config = {
