@@ -5,7 +5,7 @@ node_modules
 
 # production
 build
-src/config
+src/config/development.env.js
 
 # misc
 .DS_Store

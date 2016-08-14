@@ -1,16 +1,13 @@
 import firebase from 'firebase';
 
-let env;
-if (process.env.NODE_ENV === 'development') {
-    env = require('../config/env');
-}
+let env = require(`../config/${process.env.NODE_ENV}.env`);
 
 try {
     const config = {
-        apiKey: process.env.REACT_APP_API_KEY || env.REACT_APP_API_KEY,
-        authDomain: process.env.REACT_APP_AUTH_DOMAIN || env.REACT_APP_AUTH_DOMAIN,
-        databaseURL: process.env.REACT_APP_DATABASE_URL || env.REACT_APP_DATABASE_URL,
-        storageBucket: process.env.REACT_APP_STORAGE_BUCKET || env.REACT_APP_STORAGE_BUCKET,
+        apiKey: env.REACT_APP_API_KEY,
+        authDomain: env.REACT_APP_AUTH_DOMAIN,
+        databaseURL: env.REACT_APP_DATABASE_URL,
+        storageBucket: env.REACT_APP_STORAGE_BUCKET,
     };
     firebase.initializeApp(config);
 } catch (e) {}
