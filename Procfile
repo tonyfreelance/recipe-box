@@ -1,1 +1,1 @@
-web: react-scripts build
+web: NODE_ENV=production react-scripts start
