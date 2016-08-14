@@ -1,5 +1,8 @@
 import firebase from 'firebase';
-import env from '../config/env';
+
+if (process.env.NODE_ENV === 'development') {
+  import env from '../config/env';
+}
 
 try {
   const config = {
