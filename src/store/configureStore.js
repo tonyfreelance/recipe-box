@@ -1,12 +1,13 @@
 import * as redux from 'redux';
 import thunk from 'redux-thunk';
 
-import { recipesReducer, authReducer } from '../reducers/reducers';
+import { recipesReducer, authReducer, searchRecipesReducer } from '../reducers/reducers';
 
 export let configure = () => {
   const reducer = redux.combineReducers({
     recipes: recipesReducer,
-    auth: authReducer
+    auth: authReducer,
+    searchRecipes: searchRecipesReducer
   });
 
   // Avoid redundant info after users log out and log in again

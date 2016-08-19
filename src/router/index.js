@@ -3,7 +3,9 @@ import {Router, Route, IndexRoute, hashHistory} from 'react-router';
 
 import App from '../components/App';
 import Login from '../components/Login';
-import RecipeBox from '../components/RecipeBox';
+import LocalRecipeBox from '../components/LocalRecipeBox';
+import OnlineRecipeBox from '../components/OnlineRecipeBox';
+import OnlineRecipeItem from '../components/OnlineRecipeItem';
 import firebase from '../firebase/index';
 
 function requiredLogin(nextState, replace, next) {
@@ -15,7 +17,7 @@ function requiredLogin(nextState, replace, next) {
 
 function redirectIfLoggedIn(nextState, replace, next) {
   if(firebase.auth().currentUser) {
-    replace('/recipes');
+    replace('/local-recipes');
   }
   next();
 }
@@ -23,7 +25,10 @@ function redirectIfLoggedIn(nextState, replace, next) {
 export default (
   <Router history={hashHistory}>
     <Route path="/" component={App}>
-      <Route path="recipes"  component={RecipeBox} onEnter={requiredLogin}/>
+      <Route path="local-recipes"  component={LocalRecipeBox} onEnter={requiredLogin}/>
+      <Route path="online-recipes"  component={OnlineRecipeBox} onEnter={requiredLogin}>
+        <Route path="/online-recipes/:recipeId" component={OnlineRecipeBox} onEnter={requiredLogin}/>
+      </Route>
       <IndexRoute component={Login} onEnter={redirectIfLoggedIn}/>
     </Route>
   </Router>

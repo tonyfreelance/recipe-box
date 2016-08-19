@@ -16,7 +16,7 @@ class NavBar extends React.Component {
       if(this.props.auth.uid) {
         return (
           <Nav pullRight>
-            <NavItem eventKey={1} href="#" onClick={this.logout}>Log out</NavItem>
+            <NavItem eventKey={3} href="#" onClick={this.logout}>Log out</NavItem>
           </Nav>
         );
       }
@@ -32,8 +32,13 @@ class NavBar extends React.Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-            <LinkContainer to="/recipes">
+            <LinkContainer to="/local-recipes">
               <NavItem eventKey={1}>Home</NavItem>
+            </LinkContainer>
+          </Nav>
+          <Nav>
+            <LinkContainer to="/online-recipes">
+              <NavItem eventKey={2}>Search</NavItem>
             </LinkContainer>
           </Nav>
           {showLogout()}

@@ -17,12 +17,10 @@ firebase.auth().onAuthStateChanged((user) => {
   if(user) {
     store.dispatch(actions.login(user.uid));
     store.dispatch(actions.startAddRecipes())
-    hashHistory.push('/recipes');
-    console.log('Current state', store.getState());
+    hashHistory.push('/local-recipes');
   } else {
     store.dispatch(actions.logout());
     hashHistory.push('/');
-    console.log('Current state', store.getState());
   }
 });
 

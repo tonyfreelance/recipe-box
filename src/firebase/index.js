@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 
-const defaultEnv = process.env.REACT_APP_ENV || 'production';
+const defaultEnv = process.env.NODE_ENV || 'development';
 let env = require(`../config/${defaultEnv}.env`);
 
 try {
